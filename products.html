@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Products - Natan Paint Catalogue</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo">
+        <img src="natan2.jpg" alt="Natan Paint PNL Logo" class="logo-img">
+        <span class="brand-name">Natan <span>Paint</span></span>
+      </a>
+      <button class="hamburger" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="Promise.html" class="nav-link">Promise</a>
+        <a href="products.html" class="nav-link active">Products</a>
+        <a href="colors.html" class="nav-link">Color Palette</a>
+        <a href="calculator.html" class="nav-link">Calculator</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Header -->
+  <section style="background:var(--bg-light); padding: 4rem 0 2rem 0; text-align:center;">
+    <div class="container">
+      <h1 class="section-title">Our Products</h1>
+      <p class="section-subtitle">Quality paints for every space, surface, and architectural style.</p>
+
+      <!-- Filter Buttons -->
+      <div class="filter-controls">
+        <button class="filter-btn active" data-filter="all">All Products</button>
+        <button class="filter-btn" data-filter="interior">Interior Paint</button>
+        <button class="filter-btn" data-filter="exterior">Exterior Paint</button>
+        <button class="filter-btn" data-filter="decorative">Decorative Paint</button>
+        <button class="filter-btn" data-filter="protective">Protective Coatings</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Product Catalogue Section -->
+  <section class="products-section" style="padding-top: 2rem;">
+    <div class="container">
+      <div class="products-grid">
+        
+        <!-- Product 1 -->
+        <div class="product-card" data-category="interior">
+          <div class="product-img-wrapper">
+            <span class="product-tag">Interior</span>
+            <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=400&q=80" alt="Natan Luxurious Silk">
+          </div>
+          <div class="product-info">
+            <h3>Natan Luxurious Silk</h3>
+            <p>Premium interior paint with a smooth, elegant silk sheen finish that reflects light subtly.</p>
+            <div class="product-meta">
+              <span><strong>Surface:</strong> Plaster / Drywall</span>
+              <span><strong>Finish:</strong> Silk</span>
+            </div>
+            <a href="contact.html" class="btn btn-outline-navy">View Details</a>
+          </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card" data-category="exterior">
+          <div class="product-img-wrapper">
+            <span class="product-tag">Exterior</span>
+            <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=400&q=80" alt="Natan WeatherShield">
+          </div>
+          <div class="product-info">
+            <h3>Natan WeatherShield</h3>
+            <p>Durable exterior paint designed to withstand heavy rainfall, harsh UV sun, and fungal growth.</p>
+            <div class="product-meta">
+              <span><strong>Surface:</strong> Concrete / Masonry</span>
+              <span><strong>Finish:</strong> Matt</span>
+            </div>
+            <a href="contact.html" class="btn btn-outline-navy">View Details</a>
+          </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card" data-category="interior">
+          <div class="product-img-wrapper">
+            <span class="product-tag">Interior</span>
+            <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=400&q=80" alt="Natan Emulsion">
+          </div>
+          <div class="product-info">
+            <h3>Natan Emulsion</h3>
+            <p>Versatile wall and ceiling emulsion paint offering smooth application and consistent opacity.</p>
+            <div class="product-meta">
+              <span><strong>Surface:</strong> Walls / Ceilings</span>
+              <span><strong>Finish:</strong> Matt</span>
+            </div>
+            <a href="contact.html" class="btn btn-outline-navy">View Details</a>
+          </div>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="product-card" data-category="protective">
+          <div class="product-img-wrapper">
+            <span class="product-tag">Protective</span>
+            <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?auto=format&fit=crop&w=400&q=80" alt="Natan Gloss">
+          </div>
+          <div class="product-info">
+            <h3>Natan Gloss</h3>
+            <p>High-quality oil-based gloss paint for long-lasting protection on wood and metal fixtures.</p>
+            <div class="product-meta">
+              <span><strong>Surface:</strong> Wood / Metal</span>
+              <span><strong>Finish:</strong> Gloss</span>
+            </div>
+            <a href="contact.html" class="btn btn-outline-navy">View Details</a>
+          </div>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="product-card" data-category="decorative">
+          <div class="product-img-wrapper">
+            <span class="product-tag">Decorative</span>
+            <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=400&q=80" alt="Natan Velvet Texture">
+          </div>
+          <div class="product-info">
+            <h3>Natan Velvet Texture</h3>
+            <p>Specialty feature-wall paint creating luxurious textured patterns and artistic dimensions.</p>
+            <div class="product-meta">
+              <span><strong>Surface:</strong> Feature Walls</span>
+              <span><strong>Finish:</strong> Textured</span>
+            </div>
+            <a href="contact.html" class="btn btn-outline-navy">View Details</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo">
+          <img src="natan2.png" alt="Natan Paint PNL Logo" class="logo-img">
+          <span class="brand-name" style="color:white;">Natan <span>Paint</span></span>
+        </a>
+        <p>Providing premium paint solutions engineered for outstanding protection, beauty, and lasting impression across Nigeria.</p>
+      </div>
+      <div>
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="Promise.html">Promise</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Categories</h4>
+        <ul class="footer-links">
+          <li><a href="products.html">Interior Paint</a></li>
+          <li><a href="products.html">Exterior Paint</a></li>
+          <li><a href="products.html">Decorative Coatings</a></li>
+          <li><a href="products.html">Protective Paint</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Contact Info</h4>
+        <p style="margin-bottom:0.5rem;"><i class="fas fa-map-marker-alt" style="color:var(--accent-red);"></i> Victoria Island, Lagos, Nigeria</p>
+        <p style="margin-bottom:0.5rem;"><i class="fas fa-phone" style="color:var(--accent-red);"></i> +234 800 123 4567</p>
+        <p><i class="fas fa-envelope" style="color:var(--accent-red);"></i> info@natanpaint.ng</p>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>&copy; 2026 Natan Paint. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/2348001234567" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+  <script src="script.js"></script>
+</body>
+</html>

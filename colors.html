@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Palette - Natan Paint</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .color-card {
+      background: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-align: center;
+      border: 1px solid #eee;
+    }
+    .color-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+    .color-swatch {
+      height: 110px;
+      width: 100%;
+    }
+    .color-info {
+      padding: 0.8rem 0.5rem;
+    }
+    .color-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #1f2937;
+      margin-bottom: 0.2rem;
+    }
+    .color-hex {
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Navigation -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo">
+        <img src="natan2.jpg" alt="Natan Paint PNL Logo" class="logo-img">
+        <span class="brand-name">Natan <span>Paint</span></span>
+      </a>
+      <button class="hamburger" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="Promise.html" class="nav-link">Promise</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="colors.html" class="nav-link active">Color Palette</a>
+        <a href="calculator.html" class="nav-link">Calculator</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Page Banner -->
+  <section style="background: var(--bg-light); padding: 4rem 0 2rem 0; text-align: center;">
+    <div class="container">
+      <h1 class="section-title">Official Color Collection</h1>
+      <p class="section-subtitle">Browse through our official color card shades. Custom shades are also produced to client specification.</p>
+    </div>
+  </section>
+
+  <!-- Color Palette Display -->
+  <section style="padding: 3rem 0 5rem 0;">
+    <div class="container">
+      
+      <div class="color-grid">
+
+        <!-- Off Whites & Creams -->
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #FAF5E8;"></div>
+          <div class="color-info"><div class="color-name">Off White</div><div class="color-hex">#FAF5E8</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #F8EDC2;"></div>
+          <div class="color-info"><div class="color-name">Buttermilk</div><div class="color-hex">#F8EDC2</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #FAF0A7;"></div>
+          <div class="color-info"><div class="color-name">Pollen</div><div class="color-hex">#FAF0A7</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #EED79D;"></div>
+          <div class="color-info"><div class="color-name">Pale Ivory</div><div class="color-hex">#EED79D</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #F8E3C1;"></div>
+          <div class="color-info"><div class="color-name">Honeysuckle Cream</div><div class="color-hex">#F8E3C1</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #CBB295;"></div>
+          <div class="color-info"><div class="color-name">Mushroom</div><div class="color-hex">#CBB295</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #F9E8D2;"></div>
+          <div class="color-info"><div class="color-name">Magnolia</div><div class="color-hex">#F9E8D2</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #F2BD8C;"></div>
+          <div class="color-info"><div class="color-name">Cameo</div><div class="color-hex">#F2BD8C</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #EAC085;"></div>
+          <div class="color-info"><div class="color-name">Rich Cream</div><div class="color-hex">#EAC085</div></div>
+        </div>
+
+        <!-- Yellows & Oranges -->
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #FFD700;"></div>
+          <div class="color-info"><div class="color-name">Canary</div><div class="color-hex">#FFD700</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #FFA500;"></div>
+          <div class="color-info"><div class="color-name">Saffron Yellow</div><div class="color-hex">#FFA500</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #FFB300;"></div>
+          <div class="color-info"><div class="color-name">Golden Yellow</div><div class="color-hex">#FFB300</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #F1B24A;"></div>
+          <div class="color-info"><div class="color-name">Marigold</div><div class="color-hex">#F1B24A</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #A67C1E;"></div>
+          <div class="color-info"><div class="color-name">Mustard</div><div class="color-hex">#A67C1E</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #F5A623;"></div>
+          <div class="color-info"><div class="color-name">Sunrise Yellow</div><div class="color-hex">#F5A623</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #FAF082;"></div>
+          <div class="color-info"><div class="color-name">Sunflower Yellow</div><div class="color-hex">#FAF082</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #FF4500;"></div>
+          <div class="color-info"><div class="color-name">Blossom Orange</div><div class="color-hex">#FF4500</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #E65100;"></div>
+          <div class="color-info"><div class="color-name">Light Orange</div><div class="color-hex">#E65100</div></div>
+        </div>
+
+        <!-- Reds, Pinks & Terracotta -->
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #C0292B;"></div>
+          <div class="color-info"><div class="color-name">Poppy Red</div><div class="color-hex">#C0292B</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #B71C1C;"></div>
+          <div class="color-info"><div class="color-name">Post Office Red</div><div class="color-hex">#B71C1C</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #6B1D2F;"></div>
+          <div class="color-info"><div class="color-name">Claret</div><div class="color-hex">#6B1D2F</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #D97D64;"></div>
+          <div class="color-info"><div class="color-name">Eko Terracotta</div><div class="color-hex">#D97D64</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #8D382B;"></div>
+          <div class="color-info"><div class="color-name">Russet</div><div class="color-hex">#8D382B</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #A03D26;"></div>
+          <div class="color-info"><div class="color-name">Brick Red</div><div class="color-hex">#A03D26</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #E4A3A8;"></div>
+          <div class="color-info"><div class="color-name">Rose Pink</div><div class="color-hex">#E4A3A8</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #DB9D90;"></div>
+          <div class="color-info"><div class="color-name">Shell</div><div class="color-hex">#DB9D90</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #C2A2B2;"></div>
+          <div class="color-info"><div class="color-name">Candy Floss</div><div class="color-hex">#C2A2B2</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #88123B;"></div>
+          <div class="color-info"><div class="color-name">Burgundy Berry</div><div class="color-hex">#88123B</div></div>
+        </div>
+
+        <!-- Earthy Browns & Warm Tones -->
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #B07839;"></div>
+          <div class="color-info"><div class="color-name">Bamboo</div><div class="color-hex">#B07839</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #93592B;"></div>
+          <div class="color-info"><div class="color-name">Pastel Honey</div><div class="color-hex">#93592B</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #4A221B;"></div>
+          <div class="color-info"><div class="color-name">Chocolate</div><div class="color-hex">#4A221B</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #D2B48C;"></div>
+          <div class="color-info"><div class="color-name">Sand Stone</div><div class="color-hex">#D2B48C</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #805B48;"></div>
+          <div class="color-info"><div class="color-name">Dough Brown</div><div class="color-hex">#805B48</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #B5988A;"></div>
+          <div class="color-info"><div class="color-name">Rich Beige</div><div class="color-hex">#B5988A</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #6D381A;"></div>
+          <div class="color-info"><div class="color-name">Rich Brown</div><div class="color-hex">#6D381A</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #6B4E47;"></div>
+          <div class="color-info"><div class="color-name">Abuja Sierra</div><div class="color-hex">#6B4E47</div></div>
+        </div>
+
+        <!-- Blues & Purples -->
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #2E8B57;"></div>
+          <div class="color-info"><div class="color-name">Sky Blue</div><div class="color-hex">#2E8B57</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #008080;"></div>
+          <div class="color-info"><div class="color-name">Turquoise Blue</div><div class="color-hex">#008080</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #A3C9C7;"></div>
+          <div class="color-info"><div class="color-name">Ice Blue</div><div class="color-hex">#A3C9C7</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #81B3C4;"></div>
+          <div class="color-info"><div class="color-name">Crystal Blue</div><div class="color-hex">#81B3C4</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #6A99A2;"></div>
+          <div class="color-info"><div class="color-name">Cirrus Blue</div><div class="color-hex">#6A99A2</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #006080;"></div>
+          <div class="color-info"><div class="color-name">Pacific Blue</div><div class="color-hex">#006080</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #3B7A9E;"></div>
+          <div class="color-info"><div class="color-name">Dresden Blue</div><div class="color-hex">#3B7A9E</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #008B8B;"></div>
+          <div class="color-info"><div class="color-name">Fiesta Blue</div><div class="color-hex">#008B8B</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #00334E;"></div>
+          <div class="color-info"><div class="color-name">Marine Blue</div><div class="color-hex">#00334E</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #1A428A;"></div>
+          <div class="color-info"><div class="color-name">Maritime Blue</div><div class="color-hex">#1A428A</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #4C6B82;"></div>
+          <div class="color-info"><div class="color-name">Wedgewood Blue</div><div class="color-hex">#4C6B82</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #B4B0D0;"></div>
+          <div class="color-info"><div class="color-name">Pale Lilac</div><div class="color-hex">#B4B0D0</div></div>
+        </div>
+
+        <!-- Greens -->
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #4CAF50;"></div>
+          <div class="color-info"><div class="color-name">Leaf Green</div><div class="color-hex">#4CAF50</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #A3D9A5;"></div>
+          <div class="color-info"><div class="color-name">Fresh Apple</div><div class="color-hex">#A3D9A5</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #B8C2B3;"></div>
+          <div class="color-info"><div class="color-name">Desert Spring</div><div class="color-hex">#B8C2B3</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #608B74;"></div>
+          <div class="color-info"><div class="color-name">Glacier</div><div class="color-hex">#608B74</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #8EA885;"></div>
+          <div class="color-info"><div class="color-name">Pastel Green</div><div class="color-hex">#8EA885</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #5C7A54;"></div>
+          <div class="color-info"><div class="color-name">Eau de Nil</div><div class="color-hex">#5C7A54</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #A2C596;"></div>
+          <div class="color-info"><div class="color-name">Green Tea</div><div class="color-hex">#A2C596</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #006400;"></div>
+          <div class="color-info"><div class="color-name">National Green</div><div class="color-hex">#006400</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #A3B880;"></div>
+          <div class="color-info"><div class="color-name">Lime Green</div><div class="color-hex">#A3B880</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #556B2F;"></div>
+          <div class="color-info"><div class="color-name">Moss Green</div><div class="color-hex">#556B2F</div></div>
+        </div>
+
+        <!-- Greys & Dark Tones -->
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #A0A5A0;"></div>
+          <div class="color-info"><div class="color-name">Flake Grey</div><div class="color-hex">#A0A5A0</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #6C7176;"></div>
+          <div class="color-info"><div class="color-name">Dove Grey</div><div class="color-hex">#6C7176</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #555A60;"></div>
+          <div class="color-info"><div class="color-name">Mid Grey</div><div class="color-hex">#555A60</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #2F3542;"></div>
+          <div class="color-info"><div class="color-name">Dark Admiralty Grey</div><div class="color-hex">#2F3542</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #9FA19F;"></div>
+          <div class="color-info"><div class="color-name">Ash Grey</div><div class="color-hex">#9FA19F</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #4A4D4E;"></div>
+          <div class="color-info"><div class="color-name">Graphite</div><div class="color-hex">#4A4D4E</div></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background-color: #8C8F8B;"></div>
+          <div class="color-info"><div class="color-name">Stone Grey</div><div class="color-hex">#8C8F8B</div></div>
+        </div>
+
+      </div>
+
+      <p style="text-align: center; margin-top: 2.5rem; color: #6b7280; font-size: 0.9rem;">
+        * Additional colours outside those on this colour card can be produced to customers' specifications (including Pure Brilliant White).
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo">
+          <img src="natan2.png" alt="Natan Paint PNL Logo" class="logo-img">
+          <span class="brand-name" style="color:white;">Natan <span>Paint</span></span>
+        </a>
+        <p>Providing premium paint solutions engineered for outstanding protection, beauty, and lasting impression across Nigeria.</p>
+      </div>
+      <div>
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="Promise.html">Promise</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="colors.html">Color Palette</a></li>
+          <li><a href="calculator.html">Calculator</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Categories</h4>
+        <ul class="footer-links">
+          <li><a href="products.html">Interior Paint</a></li>
+          <li><a href="products.html">Exterior Paint</a></li>
+          <li><a href="products.html">Decorative Coatings</a></li>
+          <li><a href="products.html">Protective Paint</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Contact Info</h4>
+        <p style="margin-bottom:0.5rem;"><i class="fas fa-map-marker-alt" style="color:var(--accent-red);"></i> Victoria Island, Lagos, Nigeria</p>
+        <p style="margin-bottom:0.5rem;"><i class="fas fa-phone" style="color:var(--accent-red);"></i> +234 800 123 4567</p>
+        <p><i class="fas fa-envelope" style="color:var(--accent-red);"></i> info@natanpaint.ng</p>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>&copy; 2026 Natan Paint. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/2348001234567" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>

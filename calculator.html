@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paint Coverage Calculator - Natan Paint</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="index.html" class="brand-logo">
+        <img src="natan2.jpg" alt="Natan Paint PNL Logo" class="logo-img">
+        <span class="brand-name">Natan <span>Paint</span></span>
+      </a>
+      <button class="hamburger" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="Promise.html" class="nav-link">Promise</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="colors.html" class="nav-link">Color Palette</a>
+        <a href="calculator.html" class="nav-link active">Calculator</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Calculator Section -->
+  <section style="padding: 5rem 0; background: var(--bg-light);">
+    <div class="container" style="max-width: 800px;">
+      <h1 class="section-title">Paint Coverage Calculator</h1>
+      <p class="section-subtitle">Estimate how many liters of Natan Paint you need for your wall project.</p>
+
+      <div class="contact-form" style="margin-top: 2rem;">
+        <div class="form-group">
+          <label for="roomLength">Total Wall Length / Perimeter (Meters) *</label>
+          <input type="number" id="roomLength" class="form-control" placeholder="e.g. 20" step="0.1" min="0">
+        </div>
+
+        <div class="form-group">
+          <label for="wallHeight">Wall Height (Meters) *</label>
+          <input type="number" id="wallHeight" class="form-control" placeholder="e.g. 3" step="0.1" min="0">
+        </div>
+
+        <div class="form-group">
+          <label for="coatCount">Number of Coats</label>
+          <select id="coatCount" class="form-control">
+            <option value="1">1 Coat</option>
+            <option value="2" selected>2 Coats (Recommended)</option>
+            <option value="3">3 Coats</option>
+          </select>
+        </div>
+
+        <button type="button" id="calcBtn" class="btn btn-primary" style="width: 100%;">Calculate Paint Needed</button>
+
+        <div id="calcResult" style="display: none; margin-top: 2rem; padding: 1.5rem; background: #e8f5e9; border: 1px solid #4caf50; border-radius: 8px; text-align: center;">
+          <h3 style="color: #2e7d32; margin-bottom: 0.5rem;">Estimated Requirement</h3>
+          <p style="font-size: 1.5rem; font-weight: 700; color: #1b5e20;" id="resultText">0 Liters</p>
+          <p style="font-size: 0.85rem; color: #555; margin-top: 0.5rem;">Based on an average spreading rate of 10 m² per liter per coat.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand-logo">
+          <img src="natan2.png" alt="Natan Paint PNL Logo" class="logo-img">
+          <span class="brand-name" style="color:white;">Natan <span>Paint</span></span>
+        </a>
+        <p>Providing premium paint solutions engineered for outstanding protection, beauty, and lasting impression across Nigeria.</p>
+      </div>
+      <div>
+        <h4 class="footer-heading">Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="Promise.html">Promise</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="calculator.html">Calculator</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Categories</h4>
+        <ul class="footer-links">
+          <li><a href="products.html">Interior Paint</a></li>
+          <li><a href="products.html">Exterior Paint</a></li>
+          <li><a href="products.html">Decorative Coatings</a></li>
+          <li><a href="products.html">Protective Paint</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-heading">Contact Info</h4>
+        <p style="margin-bottom:0.5rem;"><i class="fas fa-map-marker-alt" style="color:var(--accent-red);"></i> Victoria Island, Lagos, Nigeria</p>
+        <p style="margin-bottom:0.5rem;"><i class="fas fa-phone" style="color:var(--accent-red);"></i> +234 800 123 4567</p>
+        <p><i class="fas fa-envelope" style="color:var(--accent-red);"></i> info@natanpaint.ng</p>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <p>&copy; 2026 Natan Paint. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/2348001234567" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('calcBtn').addEventListener('click', function() {
+      const length = parseFloat(document.getElementById('roomLength').value) || 0;
+      const height = parseFloat(document.getElementById('wallHeight').value) || 0;
+      const coats = parseInt(document.getElementById('coatCount').value) || 2;
+
+      if (length <= 0 || height <= 0) {
+        alert('Please enter valid dimensions for length and height.');
+        return;
+      }
+
+      const totalArea = length * height;
+      const coveragePerLiter = 10; // 10 sq meter per liter average
+      const litersNeeded = ((totalArea / coveragePerLiter) * coats).toFixed(1);
+
+      document.getElementById('resultText').innerText = litersNeeded + ' Liters (approx. ' + Math.ceil(litersNeeded / 20) + ' x 20L Bucket(s))';
+      document.getElementById('calcResult').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
