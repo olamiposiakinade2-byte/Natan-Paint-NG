@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NATAN PAINT - COMPLETE SCRIPT (INCLUDES CALCULATOR & FAQ LOGIC)
+   NATAN PAINT - MASTER SCRIPT (UI & VERCEL INTEGRATION)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const accordionItem = header.parentElement;
       const accordionContent = accordionItem.querySelector('.accordion-content');
 
-      // Close all other open accordion items
+      // Close other open items
       document.querySelectorAll('.accordion-item').forEach(item => {
         if (item !== accordionItem) {
           item.classList.remove('active');
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // Toggle current accordion item
+      // Toggle current item
       accordionItem.classList.toggle('active');
 
       if (accordionItem.classList.contains('active')) {
@@ -73,16 +73,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- 4. Paint Coverage Calculator Logic ---
+  // --- 4. Paint Coverage Calculator ---
   const calcBtn = document.getElementById('calcBtn');
   const calcResultBox = document.getElementById('calcResult');
   const resultText = document.getElementById('resultText');
 
   if (calcBtn && calcResultBox && resultText) {
     calcBtn.addEventListener('click', () => {
-      const length = parseFloat(document.getElementById('roomLength').value) || 0;
-      const height = parseFloat(document.getElementById('wallHeight').value) || 0;
-      const coats = parseInt(document.getElementById('coatCount').value) || 2;
+      const length = parseFloat(document.getElementById('roomLength')?.value) || 0;
+      const height = parseFloat(document.getElementById('wallHeight')?.value) || 0;
+      const coats = parseInt(document.getElementById('coatCount')?.value) || 2;
 
       if (length <= 0 || height <= 0) {
         alert('Please enter valid positive numbers for wall dimensions.');
@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       const totalArea = length * height;
-      const coveragePerLiter = 10; // Standard spreading rate (10 sq meters/liter)
+      const coveragePerLiter = 10; // Standard coverage (10 m²/L)
       const litersNeeded = ((totalArea / coveragePerLiter) * coats).toFixed(1);
       const bucketsNeeded = Math.ceil(litersNeeded / 20);
 
@@ -99,20 +99,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 5. Contact Form Validation ---
-  const contactForm = document.getElementById('natanContactForm');
+  // --- 5. Contact Form Submission (Vercel Serverless Function Endpoint) ---
+  const contactForm = document.getElementById('natanContactForm') || document.querySelector('#contactForm');
   const formFeedback = document.getElementById('formFeedback');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const fullName = document.getElementById('fullName').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const message = document.getElementById('message').value.trim();
+      // Extract input values safely across potential ID name variations
+      const fullName = (document.getElementById('fullName') || document.getElementById('name'))?.value.trim();
+      const email = document.getElementById('email')?.value.trim();
+      const phone = document.getElementById('phone')?.value.trim();
+      const serviceType = document.getElementById('serviceType')?.value || 'General Inquiry';
+      const message = document.getElementById('message')?.value.trim();
 
-      if (!fullName || !email || !phone || !message) {
+      // Basic Client Validation
+      if (!fullName || !email || !message) {
         showFeedback('Please fill in all required fields.', 'error');
         return;
       }
@@ -123,27 +126,69 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      showFeedback('Thank you! Your message has been sent successfully. We will get back to you shortly.', 'success');
-      contactForm.reset();
+      // Indicate loading state
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn ? submitBtn.innerText : 'Send Message';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Sending...';
+      }
+
+      try {
+        // Relative API route for Vercel Serverless Function
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: fullName,
+            email: email,
+            phone: phone,
+            serviceType: serviceType,
+            message: message
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          showFeedback('Thank you! Your inquiry has been sent.', 'success');
+          contactForm.reset();
+        } else {
+          showFeedback(data.error || 'Server processing error. Please try again.', 'error');
+        }
+      } catch (err) {
+        console.error('Submission Error:', err);
+        showFeedback('Could not reach backend service. Please try again later.', 'error');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerText = originalBtnText;
+        }
+      }
     });
   }
 
+  // Helper feedback display
   function showFeedback(msg, type) {
-    if (!formFeedback) return;
-    formFeedback.textContent = msg;
-    formFeedback.style.display = 'block';
-    formFeedback.style.padding = '1rem';
-    formFeedback.style.borderRadius = '8px';
-    formFeedback.style.marginBottom = '1.5rem';
+    if (formFeedback) {
+      formFeedback.textContent = msg;
+      formFeedback.style.display = 'block';
+      formFeedback.style.padding = '1rem';
+      formFeedback.style.borderRadius = '8px';
+      formFeedback.style.marginBottom = '1.5rem';
 
-    if (type === 'error') {
-      formFeedback.style.backgroundColor = '#fee2e2';
-      formFeedback.style.color = '#991b1b';
-      formFeedback.style.border = '1px solid #f87171';
+      if (type === 'error') {
+        formFeedback.style.backgroundColor = '#fee2e2';
+        formFeedback.style.color = '#991b1b';
+        formFeedback.style.border = '1px solid #f87171';
+      } else {
+        formFeedback.style.backgroundColor = '#dcfce7';
+        formFeedback.style.color = '#166534';
+        formFeedback.style.border = '1px solid #4ade80';
+      }
     } else {
-      formFeedback.style.backgroundColor = '#dcfce7';
-      formFeedback.style.color = '#166534';
-      formFeedback.style.border = '1px solid #4ade80';
+      alert(msg);
     }
   }
+
 });
