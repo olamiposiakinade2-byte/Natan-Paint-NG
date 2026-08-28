@@ -1,5 +1,5 @@
 /* ==========================================================================
-   NATAN PAINT - MAIN INTERACTIVE SCRIPT
+   NATAN PAINT - MASTER SCRIPT (UI & WEB3FORMS DIRECT INTEGRATION)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -19,21 +19,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 2. Interactive Product Filtering (Products Page) ---
+  // --- 2. Interactive Product & Color Filtering ---
   const filterBtns = document.querySelectorAll('.filter-btn');
-  const productCards = document.querySelectorAll('.products-grid .product-card');
+  const filterableCards = document.querySelectorAll('[data-category]');
 
-  if (filterBtns.length > 0 && productCards.length > 0) {
+  if (filterBtns.length > 0 && filterableCards.length > 0) {
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
-        // Remove active state from all buttons
         filterBtns.forEach(b => b.classList.remove('active'));
-        // Add active state to clicked button
         btn.classList.add('active');
 
         const filterValue = btn.getAttribute('data-filter');
 
-        productCards.forEach(card => {
+        filterableCards.forEach(card => {
           const category = card.getAttribute('data-category');
 
           if (filterValue === 'all' || filterValue === category) {
@@ -47,20 +45,77 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 3. Contact Form Validation ---
-  const contactForm = document.getElementById('natanContactForm');
+  // --- 3. FAQ Accordion Toggle ---
+  const accordionHeaders = document.querySelectorAll('.accordion-header');
+
+  accordionHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+      const accordionItem = header.parentElement;
+      const accordionContent = accordionItem.querySelector('.accordion-content');
+
+      // Close other open items
+      document.querySelectorAll('.accordion-item').forEach(item => {
+        if (item !== accordionItem) {
+          item.classList.remove('active');
+          const content = item.querySelector('.accordion-content');
+          if (content) content.style.maxHeight = null;
+        }
+      });
+
+      // Toggle current item
+      accordionItem.classList.toggle('active');
+
+      if (accordionItem.classList.contains('active')) {
+        accordionContent.style.maxHeight = accordionContent.scrollHeight + "px";
+      } else {
+        accordionContent.style.maxHeight = null;
+      }
+    });
+  });
+
+  // --- 4. Paint Coverage Calculator ---
+  const calcBtn = document.getElementById('calcBtn');
+  const calcResultBox = document.getElementById('calcResult');
+  const resultText = document.getElementById('resultText');
+
+  if (calcBtn && calcResultBox && resultText) {
+    calcBtn.addEventListener('click', () => {
+      const length = parseFloat(document.getElementById('roomLength')?.value) || 0;
+      const height = parseFloat(document.getElementById('wallHeight')?.value) || 0;
+      const coats = parseInt(document.getElementById('coatCount')?.value) || 2;
+
+      if (length <= 0 || height <= 0) {
+        alert('Please enter valid positive numbers for wall dimensions.');
+        return;
+      }
+
+      const totalArea = length * height;
+      const coveragePerLiter = 10; // Standard coverage (10 m²/L)
+      const litersNeeded = ((totalArea / coveragePerLiter) * coats).toFixed(1);
+      const bucketsNeeded = Math.ceil(litersNeeded / 20);
+
+      resultText.innerHTML = `${litersNeeded} Liters <span style="font-size: 1rem; font-weight: 400; color: #555;">(Approx. ${bucketsNeeded} x 20L Bucket${bucketsNeeded > 1 ? 's' : ''})</span>`;
+      calcResultBox.style.display = 'block';
+    });
+  }
+
+  // --- 5. Contact Form Submission (Web3Forms API Integration) ---
+  const contactForm = document.getElementById('natanContactForm') || document.querySelector('#contactForm');
   const formFeedback = document.getElementById('formFeedback');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const fullName = document.getElementById('fullName').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const message = document.getElementById('message').value.trim();
+      // Extract input values safely across potential ID name variations
+      const fullName = (document.getElementById('fullName') || document.getElementById('name'))?.value.trim();
+      const email = document.getElementById('email')?.value.trim();
+      const phone = document.getElementById('phone')?.value.trim();
+      const serviceType = document.getElementById('serviceType')?.value || 'General Inquiry';
+      const message = document.getElementById('message')?.value.trim();
 
-      if (!fullName || !email || !phone || !message) {
+      // Basic Client Validation
+      if (!fullName || !email || !message) {
         showFeedback('Please fill in all required fields.', 'error');
         return;
       }
@@ -71,27 +126,75 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      showFeedback('Thank you! Your message has been sent successfully. We will get back to you shortly.', 'success');
-      contactForm.reset();
+      // Indicate loading state
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn ? submitBtn.innerText : 'Send Message';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Sending...';
+      }
+
+      try {
+        // Send directly to Web3Forms endpoint
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            access_key: '98736266-b683-4389-95de-62bf95c72cef',
+            subject: `New Natan Paint Contact Form Submission from ${fullName}`,
+            from_name: fullName,
+            name: fullName,
+            email: email,
+            phone: phone || 'Not Provided',
+            service: serviceType,
+            message: message
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          showFeedback('Thank you! Your message has been sent successfully.', 'success');
+          contactForm.reset();
+        } else {
+          showFeedback(data.message || 'Submission failed. Please try again.', 'error');
+        }
+      } catch (err) {
+        console.error('Web3Forms Submission Error:', err);
+        showFeedback('Network error. Could not reach Web3Forms server.', 'error');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerText = originalBtnText;
+        }
+      }
     });
   }
 
+  // Helper feedback display
   function showFeedback(msg, type) {
-    if (!formFeedback) return;
-    formFeedback.textContent = msg;
-    formFeedback.style.display = 'block';
-    formFeedback.style.padding = '1rem';
-    formFeedback.style.borderRadius = '8px';
-    formFeedback.style.marginBottom = '1.5rem';
+    if (formFeedback) {
+      formFeedback.textContent = msg;
+      formFeedback.style.display = 'block';
+      formFeedback.style.padding = '1rem';
+      formFeedback.style.borderRadius = '8px';
+      formFeedback.style.marginBottom = '1.5rem';
 
-    if (type === 'error') {
-      formFeedback.style.backgroundColor = '#fee2e2';
-      formFeedback.style.color = '#991b1b';
-      formFeedback.style.border = '1px solid #f87171';
+      if (type === 'error') {
+        formFeedback.style.backgroundColor = '#fee2e2';
+        formFeedback.style.color = '#991b1b';
+        formFeedback.style.border = '1px solid #f87171';
+      } else {
+        formFeedback.style.backgroundColor = '#dcfce7';
+        formFeedback.style.color = '#166534';
+        formFeedback.style.border = '1px solid #4ade80';
+      }
     } else {
-      formFeedback.style.backgroundColor = '#dcfce7';
-      formFeedback.style.color = '#166534';
-      formFeedback.style.border = '1px solid #4ade80';
+      alert(msg);
     }
   }
+
 });
